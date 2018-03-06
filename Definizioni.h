@@ -1,8 +1,8 @@
 #ifndef DEFINIZIONI_H
 #define DEFINIZIONI_H
 
-const int righeMat=
-const int colonneMat=
+const int righeMat=18;
+const int colonneMat=32;
 
 
 enum comandi{UP, DOWN, LEFT, RIGHT, SPACE, ESCAPE};
