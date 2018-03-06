@@ -6,11 +6,8 @@
 using namespace std;
 
 class Object{
-  private:
-    int positionX, positionY;
 
   public:
-
     virtual void setPositionX();
     virtual void setPositionY();
 
@@ -18,6 +15,8 @@ class Object{
     virtual int getPositionY();
 
     virtual void draw();
+
+
 };
 
 #endif

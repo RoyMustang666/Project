@@ -6,13 +6,18 @@
 using namespace std;
 class Muro{
    private:
-      int posX;
-      int posY;
       ALLEGRO_BITMAP *muro;
+      int positionX, positionY;
    public:
       Muro(int _posX, int _posY);
       ~Muro();
 
-      void disegnaMuro(int x, int y);
+      void setPositionX(int x);
+      void setPositionY(int y);
+
+      int getPositionX()const;
+      int getPositionY()const;
+
+      void draw(int x, int y);
 };
 #endif
