@@ -7,12 +7,14 @@
 #include "Player.h"
 #include "Definizioni.h"
 #include "Object.h"
+#include "menuRisoluzioni.h"
 
 using namespace std;
 
 class GestoreGioco{
 
   ALLEGRO_DISPLAY *display;
+  ALLEGRO_BITMAP *bitmapR;
   ALLEGRO_EVENT_QUEUE *event_queue;
   ALLEGRO_TIMER *timer;
   bool tasti[6];
@@ -24,7 +26,7 @@ class GestoreGioco{
    ~GestoreGioco();
 
    bool inizializzatore();
-   void start();
+   void loop();
 
 };
 #endif
