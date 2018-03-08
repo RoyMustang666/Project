@@ -9,13 +9,17 @@ using namespace std;
 class CampoDiGioco{
 
 private:
-  int Mappa[righeMat][colonneMat];
+  int** Mappa;
   // int Mappa[18][32];
 
 public:
-  void leggiCampoDiGioco();
+  CampoDiGioco();
+  ~CampoDiGioco();
+  void leggiCampoDiGioco(int numNemici);
   void stampaCampoDiGioco()const;
-  CampoDiGioco& operator [](int i,int j);
+  int** restituisciMappa()/*const*/; // forse posso farlo const
+  // CampoDiGioco& operator [](int i,int j); // non funziona
+  int getElementoMappa(int i,int j);
 
 
 
