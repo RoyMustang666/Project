@@ -13,15 +13,10 @@ private:
   // int Mappa[18][32];
 
 public:
-  void leggiMatriceFile();
-  void stampa()const{
-    for(int i =0;i<18;i++){
-      for(int j =0;j<32;j++){
-        cout<<Mappa[i][j]<<" ";
-      }
-    cout<<endl;
-    }
-  }
+  void leggiCampoDiGioco();
+  void stampaCampoDiGioco()const;
+  CampoDiGioco& operator [](int i,int j);
+
 
 
 
