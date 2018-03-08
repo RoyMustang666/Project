@@ -14,6 +14,9 @@ class menuRisoluzioni{
      ALLEGRO_BITMAP *buttonSD;
      ALLEGRO_BITMAP *buttonR;
      ALLEGRO_BITMAP *buttonFH;
+     ALLEGRO_EVENT_QUEUE *event_queue = NULL;
+     ALLEGRO_TIMER *timer = NULL;
+     bool redraw = true;
      float posX;
      float posY;
 
