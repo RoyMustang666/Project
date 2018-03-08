@@ -5,23 +5,35 @@ GestoreGioco::GestoreGioco() :display(0), event_queue(0),timer(0),bitmapR(0){}
 
 bool GestoreGioco::inizializzatore(){
 
-
   if(!al_init()){
     cout<<"ALLEGRO NON INIZIALIZZATO"<<endl;
     return false;
   }
 
-
-  display=al_create_display(640,480);
-
-
-  if(!display){
-    cout<<"DISPLAY NON INIZIALIZZATO"<<endl;
+  if(!al_init_image_addon()){
+    cout<<"IMAGE ERROR"<<endl;
     return false;
   }
 
+  if(!al_install_mouse()){
+    cout<<"MOUSE ERROR"<<endl;
+    return false;
+  }
+
+  // display=al_create_display(640,480);
+
+
+  // if(!display){
+  //   cout<<"DISPLAY NON INIZIALIZZATO"<<endl;
+  //   return false;
+  // }
+
   //al_load_bitmap() ci deve essere tra poco
-  bitmapR = al_create_bitmap(80, 80);
+  // bitmapR = al_create_bitmap(80, 80);
+  menuRisoluzioni *start=new menuRisoluzioni();
+  string menu= start->startMenu();
+
+  cout<<menu<<endl;
 
   al_install_keyboard();
 
@@ -36,17 +48,17 @@ bool GestoreGioco::inizializzatore(){
 		tasti[i] = false;
 
 
-    al_set_target_bitmap(bitmapR);
-    al_clear_to_color(al_map_rgb(255, 0, 255));
-    al_set_target_bitmap(al_get_backbuffer(display));
-    al_clear_to_color(al_map_rgb(0,0,0));
-    al_draw_bitmap(bitmapR,0,0,0);
+    // al_set_target_bitmap(bitmapR);
+    // al_clear_to_color(al_map_rgb(255, 0, 255));
+    // al_set_target_bitmap(al_get_backbuffer(display));
+    // al_clear_to_color(al_map_rgb(0,0,0));
+    // al_draw_bitmap(bitmapR,0,0,0);
 
     al_flip_display();
 
     al_rest(5.0);
 
-    al_set_target_backbuffer(display);
+    // al_set_target_backbuffer(display);
       //a.draw(25,25);
 
   return true;
