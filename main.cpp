@@ -9,6 +9,7 @@ int main()
   GestoreGioco *a=new GestoreGioco();
 
   a->inizializzatore();
+  // a->start();
 
   delete a;
 

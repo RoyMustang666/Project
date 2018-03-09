@@ -15,13 +15,13 @@ using namespace std;
 class GestoreGioco{
 
   ALLEGRO_DISPLAY *display;
-  ALLEGRO_BITMAP *bitmapR;
+  // ALLEGRO_BITMAP *bitmapR;
   ALLEGRO_EVENT_QUEUE *event_queue;
   ALLEGRO_TIMER *timer;
   bool tasti[6];
-  Player *oggettoCorrente;
   bool gameDone;
-  Object *oggetto;
+  Object* oggetto;
+  Player* oggettoCorrente;
 
  public:
    GestoreGioco();

@@ -12,8 +12,8 @@ class menuSingoloMulti{
 
   private:
      ALLEGRO_DISPLAY *display;
-     ALLEGRO_BITMAP *buttonSingolo;
-     ALLEGRO_BITMAP *buttonMulti;
+     ALLEGRO_BITMAP *button;
+    //  ALLEGRO_BITMAP *buttonMulti;
      ALLEGRO_EVENT_QUEUE *event_queue = NULL;
      ALLEGRO_TIMER *timer = NULL;
      bool redraw = true;

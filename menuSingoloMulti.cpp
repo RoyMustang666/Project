@@ -1,12 +1,14 @@
 #include"menuSingoloMulti.h"
 
-menuSingoloMulti::menuSingoloMulti():display(0),buttonSingolo(0),buttonMulti(0),posX(0),posY(0){
+menuSingoloMulti::menuSingoloMulti():display(0),button(0),posX(0),posY(0){
 }
 
 menuSingoloMulti::~menuSingoloMulti(){
   al_destroy_display(display);
-  al_destroy_bitmap(buttonSingolo);
-  al_destroy_bitmap(buttonMulti);
+  al_destroy_bitmap(button);
+  al_destroy_timer(timer);
+  al_destroy_event_queue(event_queue);
+  // al_destroy_bitmap(buttonMulti);
 }
 
 string menuSingoloMulti::sceltaSingoloMulti(string _risoluzione){
@@ -45,22 +47,27 @@ string menuSingoloMulti::sceltaSingoloMulti(string _risoluzione){
     altezzaScelta=altezzaFH;
   }
 
-  buttonSingolo=al_load_bitmap("Images/Wall.png");
-  buttonMulti=al_load_bitmap("Images/Wall.png");
 
  if(larghezzaScelta==larghezzaSD && altezzaScelta==altezzaSD){
-   al_draw_bitmap(buttonSingolo,220,110,0);
-   al_draw_bitmap(buttonMulti,220,290,0);
+   button=al_load_bitmap("Images/button_FHD.png");
+   al_draw_bitmap(button,220,110,0);
+   button=al_load_bitmap("Images/button_RHD.png");
+   al_draw_bitmap(button,220,290,0);
+
  }
 
  if(larghezzaScelta==larghezzaR && altezzaScelta==altezzaR){
-   al_draw_bitmap(buttonSingolo,,,0);
-   al_draw_bitmap(buttonMulti,,,0);
+   button=al_load_bitmap("Images/button_FHD.png");
+   al_draw_bitmap(button,573,152,0);
+   button=al_load_bitmap("Images/button_FHD.png");
+   al_draw_bitmap(button,573,536,0);
  }
 
  if(larghezzaScelta==larghezzaFH && altezzaScelta==altezzaFH){
-   al_draw_bitmap(buttonSingolo,,,0);
-   al_draw_bitmap(buttonMulti,,,0);
+   button=al_load_bitmap("Images/button_FHD.png");
+   al_draw_bitmap(button,860,500,0);
+   button=al_load_bitmap("Images/button_FHD.png");
+   al_draw_bitmap(button,860,650,0);
  }
 
   al_flip_display();
@@ -101,34 +108,36 @@ string menuSingoloMulti::sceltaSingoloMulti(string _risoluzione){
          posX = ev.mouse.x;
          posY = ev.mouse.y;
       }
+
       else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
        if(larghezzaScelta==larghezzaSD && altezzaScelta==altezzaSD){
-        if(posX >= 220 && posX <= 440 && posY >= 100 && posY <= 180)
+        if(posX >= 220 && posX <= 440 && posY >= 110 && posY <= 190)
              return "SinglePlayer";
 
-         else if(posX >= 220 && posX <= 440 && posY >= 280 && posY <= 360)
+         else if(posX >= 220 && posX <= 440 && posY >= 290 && posY <= 370)
              return "MultiPlayer";
         }
 
        if(larghezzaScelta==larghezzaR && altezzaScelta==altezzaR){
-        if()
+        if(posX >= 573 && posX <= 753 && posY >= 152 && posY <= 232)
              return "SinglePlayer";
 
-         else if()
+         else if(posX >= 573 && posX <= 773 && posY >= 536 && posY <= 616)
              return "MultiPlayer";
         }
 
+
        if(larghezzaScelta==larghezzaFH && altezzaScelta==altezzaFH){
-        if()
+        if(posX >= 860 && posX <= 1060 && posY >= 500 && posY <= 580)
              return "SinglePlayer";
 
-         else if()
+         else if(posX >= 860 && posX <= 1060 && posY >= 650 && posY <= 730)
              return "MultiPlayer";
         }
 
      }
 
-   }
+   }// fine while true
 
    return "0";
 

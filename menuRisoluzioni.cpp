@@ -1,14 +1,15 @@
 #include "menuRisoluzioni.h"
 
-menuRisoluzioni::menuRisoluzioni():display(0),buttonR(0),buttonFH(0),buttonSD(0),posX(0),posY(0){}
+menuRisoluzioni::menuRisoluzioni():display(0),button(0),posX(0),posY(0){}
 
 //--------------------------------------//
 
 menuRisoluzioni::~menuRisoluzioni(){
   al_destroy_display(display);
-  al_destroy_bitmap(buttonR);
-  al_destroy_bitmap(buttonFH);
-  al_destroy_bitmap(buttonSD);;
+  al_destroy_bitmap(button);
+  al_destroy_event_queue(event_queue);
+  al_destroy_timer(timer);
+
 }
 
 //--------------------------------------//
@@ -30,7 +31,7 @@ string menuRisoluzioni::startMenu(){
      return "false";
    }
 
-  display=al_create_display(640,480);
+  display=al_create_display(larghezzaSD,altezzaSD);
 
   if(!display){
     cout<<"DISPLAY NON INIZIALIZZATO"<<endl;
@@ -44,16 +45,21 @@ string menuRisoluzioni::startMenu(){
     return "false";
   }
 
-  buttonSD=al_load_bitmap("Images/button_SD.png");
-  buttonR=al_load_bitmap("Images/button_RHD.png");
-  buttonFH=al_load_bitmap("Images/button_FHD.png");
+
+
 
   //colore sfondo 51 25 0
   //colore tasti 102 51 0
+// CON UN SOLO BOTTONE HO TUTTE E 3 I BOTTONI
+  button=al_load_bitmap("Images/button_SD.png");
+  al_draw_bitmap(button,220,110,0);
 
-  al_draw_bitmap(buttonSD,220,110,0);
-  al_draw_bitmap(buttonR,220,200,0);
-  al_draw_bitmap(buttonFH,220,290,0);
+  button=al_load_bitmap("Images/button_RHD.png");
+  al_draw_bitmap(button,220,200,0);
+
+  button=al_load_bitmap("Images/button_FHD.png");
+  al_draw_bitmap(button,220,290,0);
+
   al_flip_display();
 
   al_set_target_bitmap(al_get_backbuffer(display));
@@ -70,9 +76,11 @@ string menuRisoluzioni::startMenu(){
 
    al_register_event_source(event_queue, al_get_mouse_event_source());
 
-
-
    al_start_timer(timer);
+
+// -------------------------------------------------------------------------------
+                          // CODA EVENTI
+// -------------------------------------------------------------------------------
 
    while(1)
    {
@@ -92,14 +100,21 @@ string menuRisoluzioni::startMenu(){
          posY = ev.mouse.y;
       }
       else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
-        if(posX >= 220 && posX <= 440 && posY >= 100 && posY <= 180)
+        if(posX >= 220 && posX <= 440 && posY >= 110 && posY <= 190){
+            al_destroy_display(display);
              return "SD";
+           }
 
-        else if(posX >= 220 && posX <= 440 && posY >= 190 && posY <= 270)
+        else if(posX >= 220 && posX <= 440 && posY >= 200 && posY <= 280){
+          al_destroy_display(display);
               return "HD";
+            }
 
-        else if(posX >= 220 && posX <= 440 && posY >= 280 && posY <= 360)
+        else if(posX >= 220 && posX <= 440 && posY >= 290 && posY <= 370){
+          al_destroy_display(display);
               return "FH";
+            }
+
       }
 
       if(redraw && al_is_event_queue_empty(event_queue)) {
@@ -107,6 +122,5 @@ string menuRisoluzioni::startMenu(){
 
       }
    }
-
    return "0";
 }

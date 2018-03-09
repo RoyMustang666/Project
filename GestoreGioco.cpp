@@ -1,7 +1,7 @@
 #include"GestoreGioco.h"
 
 
-GestoreGioco::GestoreGioco() :display(0), event_queue(0),timer(0),bitmapR(0){}
+GestoreGioco::GestoreGioco() :display(0),event_queue(0),timer(0),oggetto(0),oggettoCorrente(0){}
 
 bool GestoreGioco::inizializzatore(){
 
@@ -39,7 +39,7 @@ bool GestoreGioco::inizializzatore(){
   al_register_event_source(event_queue,al_get_keyboard_event_source());
 	al_register_event_source(event_queue,al_get_timer_event_source(timer));
 
-  for (int i = 0; i < 5; i++)
+  for (int i = 0; i < 6; i++)
 		tasti[i] = false;
 
 
@@ -54,15 +54,18 @@ bool GestoreGioco::inizializzatore(){
 
 }
 
+// FINE INIZIALIZZATOREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
 GestoreGioco::~GestoreGioco(){
-  if(event_queue!=0)
 	al_destroy_event_queue(event_queue);
-	if(timer!=0)
-	al_destroy_timer(timer);
-	if(display!=0)
-	al_destroy_display(display);
-  al_destroy_bitmap(bitmapR);
+  al_destroy_timer(timer);
+  al_destroy_display(display);
+  delete  oggetto;
+  delete  oggettoCorrente;
+  // al_destroy_bitmap(bitmapR);
 }
+
+
 
 
 
