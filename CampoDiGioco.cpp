@@ -57,9 +57,9 @@ int CampoDiGioco::getElementoMappa(int i, int j){
   return Mappa[i][j];
 }
 
-// es: CampoDiGioco a,b; a.leggiCampoDiGioco(); b=a; adesso b ed ha puntano alla stessa parte 
+// es: CampoDiGioco a,b; a.leggiCampoDiGioco(); b=a; adesso b ed ha puntano alla stessa parte
 // LA FUNZIONE PER FAR PUNTARE UNA MAPPA A QUESTA MAPPA // ATTENZIONE NON CREA UNA COPIA
-int** restituisciMappa(){
+int** CampoDiGioco::restituisciMappa(){
   return Mappa;
 }
 
@@ -68,4 +68,8 @@ CampoDiGioco::~CampoDiGioco(){
   for(int i =0;i<righeMat;i++)
     delete [] Mappa[i];
   delete [] Mappa;
+}
+
+void CampoDiGioco::setElementoMatrice(int i, int j,int numero){
+  Mappa[i][j]=numero;
 }
