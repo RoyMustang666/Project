@@ -20,20 +20,15 @@ bool GestoreGioco::inizializzatore(){
     return false;
   }
 
-  // display=al_create_display(640,480);
-
-
-  // if(!display){
-  //   cout<<"DISPLAY NON INIZIALIZZATO"<<endl;
-  //   return false;
-  // }
-
-  //al_load_bitmap() ci deve essere tra poco
-  // bitmapR = al_create_bitmap(80, 80);
   menuRisoluzioni *start=new menuRisoluzioni();
   string menu= start->startMenu();
-
   cout<<menu<<endl;
+
+  menuSingoloMulti *SM=new menuSingoloMulti();
+  string singleMulti=SM->sceltaSingoloMulti(menu);
+  cout<<singleMulti<<endl;
+
+
 
   al_install_keyboard();
 
@@ -44,19 +39,13 @@ bool GestoreGioco::inizializzatore(){
   al_register_event_source(event_queue,al_get_keyboard_event_source());
 	al_register_event_source(event_queue,al_get_timer_event_source(timer));
 
-  for (int i = 0; i < 6; i++)
+  for (int i = 0; i < 5; i++)
 		tasti[i] = false;
 
 
-    // al_set_target_bitmap(bitmapR);
-    // al_clear_to_color(al_map_rgb(255, 0, 255));
-    // al_set_target_bitmap(al_get_backbuffer(display));
-    // al_clear_to_color(al_map_rgb(0,0,0));
-    // al_draw_bitmap(bitmapR,0,0,0);
-
     al_flip_display();
 
-    al_rest(5.0);
+    //al_rest(5.0);
 
     // al_set_target_backbuffer(display);
       //a.draw(25,25);
@@ -89,56 +78,33 @@ GestoreGioco::~GestoreGioco(){
 //     ALLEGRO_EVENT event;
 //     al_wait_for_event(event_queue,&event);
 //
-//     if(event.type == ALLEGRO_EVENT_KEY_UP){
-//       switch (event.keyboard.keycode) {
-//         case ALLEGRO_KEY_UP:
-//            tasti[UP]=true;
-//            break
-//         case ALLEGRO_KEY_DOWN:
-//           tasti[DOWN]=true;
-//           break
-//         case ALLEGRO_KEY_RIGHT:
-//           tasti[RIGHT]=true;
-//           break
-//         case ALLEGRO_KEY_LEFT:
-//           tasti[LEFT]=true;
-//           break
-//         case ALLEGRO_KEY_SPACE:
-//           tasti[SPACE]=true;
-//           break
-//         case ALLEGRO_KEY_ESCAPE:
-//           tasti[ESCAPE]=true;
-//           break
-//       }
-//     }
-//
-//     else if (event.type == ALLEGRO_EVENT_KEY_UP)
+//    if (event.type == ALLEGRO_EVENT_TIMER)
 //     {
-//       switch (event.keyboard.keycode)
-//       {
-//       case ALLEGRO_KEY_UP:
-//         tasti[UP] = false;
-//         break;
-//       case ALLEGRO_KEY_DOWN:
-//         tasti[DOWN] = false;
-//         break;
-//       case ALLEGRO_KEY_RIGHT:
-//         tasti[RIGHT] = false;
-//         break;
-//       case ALLEGRO_KEY_LEFT:
-//         tasti[LEFT] = false;
-//         break;
-//       case ALLEGRO_KEY_SPACE:
-//         tasti[SPACE] = false;
-//         break;
-//       case ALLEGRO_KEY_ESCAPE:
-//         tasti[ESCAPE] = false;
-//         break;
-//       }
-//       oggettoCorrente->rilasciaTasto();//funzione in  player
+//       if(tasti[LEFT])
+//         oggettoCorrente->moveLeft();
+//       if (tasti[RIGHT])
+//         oggettoCorrente->moveRight();
+//       if (tasti[UP])
+//         oggettoCorrente->moveUp();
+//       if (tasti[DOWN])
+//         oggettoCorrente->moveDown();
+//       if (tasti[ESCAPE])
+//         oggettoCorrente->pressExit();
+//       if (tasti[SPACE])
+//         oggettoCorrente->pressSpace();
+//
+//       //oggettoCorrente->update();aggiorna il movimento
+//
+//       draw = true;
+//     }
+//         if (draw){
+//           oggettoCorrente->render();
+//           al_flip_display();
+//          }
+//       //oggettoCorrente->rilasciaTasto();//funzione in  player
 //
 //
-//   }
+//
 //
 //
 //

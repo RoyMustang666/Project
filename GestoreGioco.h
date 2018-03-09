@@ -8,6 +8,7 @@
 #include "Definizioni.h"
 #include "Object.h"
 #include "menuRisoluzioni.h"
+#include "menuSingoloMulti.h"
 
 using namespace std;
 
@@ -20,13 +21,14 @@ class GestoreGioco{
   bool tasti[6];
   Player *oggettoCorrente;
   bool gameDone;
+  Object *oggetto;
 
  public:
    GestoreGioco();
    ~GestoreGioco();
 
    bool inizializzatore();
-   void loop();
+   //void loop();
 
 };
 #endif
