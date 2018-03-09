@@ -8,7 +8,7 @@ CampoDiGioco::CampoDiGioco(){
 
 // SERVE PER LEGGERE I VARI LIVELLI DA FILE
 void CampoDiGioco::leggiCampoDiGioco(int numNemici){
-  if(numNemici==3){
+  //if(numNemici==3){
   ifstream apriFile("livello1.txt");
     while(!apriFile.eof()){
       for(int riga=0;riga<righeMat;riga++){
@@ -18,7 +18,7 @@ void CampoDiGioco::leggiCampoDiGioco(int numNemici){
       }
     }
     apriFile.close();
-  }
+  //}
   // MANCA LA PARTE DELL'ELSE DOVE I NEMICI SONO DETTATI DALLA SCELTA DELL'UTENTE
 
   // if(numNemici<3){
