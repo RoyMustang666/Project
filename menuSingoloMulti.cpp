@@ -1,7 +1,6 @@
 #include"menuSingoloMulti.h"
 
-menuSingoloMulti::menuSingoloMulti():display(0),button(0),posX(0),posY(0){
-}
+menuSingoloMulti::menuSingoloMulti():display(0),button(0),posX(0),posY(0){}
 
 menuSingoloMulti::~menuSingoloMulti(){
   al_destroy_display(display);
@@ -12,15 +11,15 @@ menuSingoloMulti::~menuSingoloMulti(){
 }
 
 string menuSingoloMulti::sceltaSingoloMulti(string _risoluzione){
-  if(!al_init()){
-    cout<<"ALLEGRO NON INIZIALIZZATO"<<endl;
-    return "false";
-  }
-
-  if(!al_init_image_addon()){
-    cout<<"ALLEGRO IMAGE NON INIZIALIZZATO"<<endl;
-    return "false";
-  }
+  // if(!al_init()){
+  //   cout<<"ALLEGRO NON INIZIALIZZATO"<<endl;
+  //   return "false";
+  // }
+  //
+  // if(!al_init_image_addon()){
+  //   cout<<"ALLEGRO IMAGE NON INIZIALIZZATO"<<endl;
+  //   return "false";
+  // }
 
   timer = al_create_timer(1.0 / FPS);
    if(!timer) {
@@ -111,28 +110,58 @@ string menuSingoloMulti::sceltaSingoloMulti(string _risoluzione){
 
       else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
        if(larghezzaScelta==larghezzaSD && altezzaScelta==altezzaSD){
-        if(posX >= 220 && posX <= 440 && posY >= 110 && posY <= 190)
-             return "SinglePlayer";
+        if(posX >= 220 && posX <= 440 && posY >= 110 && posY <= 190){
+          al_destroy_display(display);
+          al_destroy_bitmap(button);
+          al_destroy_timer(timer);
+          al_destroy_event_queue(event_queue);
+          return "SinglePlayer";
+        }
 
-         else if(posX >= 220 && posX <= 440 && posY >= 290 && posY <= 370)
-             return "MultiPlayer";
+         else if(posX >= 220 && posX <= 440 && posY >= 290 && posY <= 370){
+           al_destroy_display(display);
+           al_destroy_bitmap(button);
+           al_destroy_timer(timer);
+           al_destroy_event_queue(event_queue);
+           return "MultiPlayer";
+         }
         }
 
        if(larghezzaScelta==larghezzaR && altezzaScelta==altezzaR){
-        if(posX >= 573 && posX <= 753 && posY >= 152 && posY <= 232)
-             return "SinglePlayer";
+        if(posX >= 573 && posX <= 753 && posY >= 152 && posY <= 232){
+          al_destroy_display(display);
+          al_destroy_bitmap(button);
+          al_destroy_timer(timer);
+          al_destroy_event_queue(event_queue);
+          return "SinglePlayer";
+        }
 
-         else if(posX >= 573 && posX <= 773 && posY >= 536 && posY <= 616)
-             return "MultiPlayer";
+         else if(posX >= 573 && posX <= 773 && posY >= 536 && posY <= 616){
+           al_destroy_display(display);
+           al_destroy_bitmap(button);
+           al_destroy_timer(timer);
+           al_destroy_event_queue(event_queue);
+           return "MultiPlayer";
+         }
         }
 
 
        if(larghezzaScelta==larghezzaFH && altezzaScelta==altezzaFH){
-        if(posX >= 860 && posX <= 1060 && posY >= 500 && posY <= 580)
-             return "SinglePlayer";
+        if(posX >= 860 && posX <= 1060 && posY >= 500 && posY <= 580){
+          al_destroy_display(display);
+          al_destroy_bitmap(button);
+          al_destroy_timer(timer);
+          al_destroy_event_queue(event_queue);
+          return "SinglePlayer";
+        }
 
-         else if(posX >= 860 && posX <= 1060 && posY >= 650 && posY <= 730)
-             return "MultiPlayer";
+         else if(posX >= 860 && posX <= 1060 && posY >= 650 && posY <= 730){
+           al_destroy_display(display);
+           al_destroy_bitmap(button);
+           al_destroy_timer(timer);
+           al_destroy_event_queue(event_queue);
+           return "MultiPlayer";
+         }
         }
 
      }

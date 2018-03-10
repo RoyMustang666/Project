@@ -20,6 +20,7 @@ bool GestoreGioco::inizializzatore(){
     return false;
   }
 
+
   menuRisoluzioni *start=new menuRisoluzioni();
   string menu= start->startMenu();
   cout<<menu<<endl;
@@ -28,6 +29,14 @@ bool GestoreGioco::inizializzatore(){
   string singleMulti=SM->sceltaSingoloMulti(menu);
   cout<<singleMulti<<endl;
 
+  Drawer *disegna= new Drawer(menu);
+  display=disegna->get_display();
+  int a=3;
+  if(singleMulti=="SinglePlayer")
+    disegna->startMap(display, a);
+
+  al_flip_display();
+  al_rest(5);
 
 
   al_install_keyboard();

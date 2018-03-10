@@ -1,14 +1,15 @@
 #ifndef GESTOREGIOCO_H
 #define GESTOREGIOCO_H
 
-#include <iostream>
-#include <allegro5/allegro.h>
-#include "Nemico.h"
-#include "Player.h"
-#include "Definizioni.h"
+// #include <iostream>
+// #include <allegro5/allegro.h>
+// #include "Nemico.h"
+// #include "Player.h"
+// #include "Definizioni.h"
 #include "Object.h"
 #include "menuRisoluzioni.h"
 #include "menuSingoloMulti.h"
+#include "Drawer.h"
 
 using namespace std;
 

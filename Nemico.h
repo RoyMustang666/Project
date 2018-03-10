@@ -12,7 +12,7 @@ using namespace std;
 class Nemico: public Object{
   private:
     ALLEGRO_BITMAP* enemy;
-    int positionX, positionY;
+    int width, height;
 
   public:
     Nemico(int _x, int _y);
@@ -24,7 +24,7 @@ class Nemico: public Object{
     int getPositionX()const;
     int getPositionY()const;
 
-    void draw(int x, int y);
+    void draw(ALLEGRO_DISPLAY *display, int x, int y);
 
 
 };
