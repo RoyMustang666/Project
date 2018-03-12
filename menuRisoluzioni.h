@@ -13,8 +13,6 @@ class menuRisoluzioni{
   private:
      ALLEGRO_DISPLAY *display;
      ALLEGRO_BITMAP *button;
-    //  ALLEGRO_BITMAP *buttonR;
-    //  ALLEGRO_BITMAP *buttonFH;
      ALLEGRO_EVENT_QUEUE *event_queue = NULL;
      ALLEGRO_TIMER *timer = NULL;
      bool redraw = true;

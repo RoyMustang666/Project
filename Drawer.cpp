@@ -50,8 +50,8 @@ void Drawer::startMap(ALLEGRO_DISPLAY* display, int nn){
   // rosso.draw(widthBitmap,heightBitmap);
   for(int i=0; i<18; i++){
     for(int j=0; j<32; j++){
-      int a=i*widthBitmap;
-      int b=j*widthBitmap;
+      int a=j*widthBitmap;
+      int b=i*heightBitmap;
       switch (matrix[i][j]){
         case 0:
 
@@ -73,6 +73,7 @@ void Drawer::startMap(ALLEGRO_DISPLAY* display, int nn){
           break;
         case 6:
           giallo.draw(display, a, b);
+          // cout<<"riga:"<<i<<" "<<"colonna:"<<j<<endl;
           break;
         case 7:
 

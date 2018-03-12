@@ -20,6 +20,7 @@ bool GestoreGioco::inizializzatore(){
     return false;
   }
 
+  al_set_new_display_flags(ALLEGRO_NOFRAME);
 
   menuRisoluzioni *start=new menuRisoluzioni();
   string menu= start->startMenu();

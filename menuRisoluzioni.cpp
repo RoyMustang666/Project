@@ -15,15 +15,6 @@ menuRisoluzioni::~menuRisoluzioni(){
 //--------------------------------------//
 
 string menuRisoluzioni::startMenu(){
-  if(!al_init()){
-    cout<<"ALLEGRO NON INIZIALIZZATO"<<endl;
-    return "false";
-  }
-
-  if(!al_init_image_addon()){
-    cout<<"ALLEGRO IMAGE NON INIZIALIZZATO"<<endl;
-    return "false";
-  }
 
   timer = al_create_timer(1.0 / FPS);
    if(!timer) {
@@ -38,26 +29,16 @@ string menuRisoluzioni::startMenu(){
     return "false";
   }
 
-  //al_clear_to_color(al_map_rgb(51, 25, 0));
-
-  if(!al_install_mouse()){
-    cout<<"MOUSE NON INIZIALIZZATO"<<endl;
-    return "false";
-  }
-
-
-
-
   //colore sfondo 51 25 0
   //colore tasti 102 51 0
-// CON UN SOLO BOTTONE HO TUTTE E 3 I BOTTONI
-  button=al_load_bitmap("Images/button_SD.png");
+
+  button=al_load_bitmap("Images/risoluzioneSD.png");
   al_draw_bitmap(button,220,110,0);
 
-  button=al_load_bitmap("Images/button_RHD.png");
+  button=al_load_bitmap("Images/risoluzioneHDR.png");
   al_draw_bitmap(button,220,200,0);
 
-  button=al_load_bitmap("Images/button_FHD.png");
+  button=al_load_bitmap("Images/risoluzioneFHD.png");
   al_draw_bitmap(button,220,290,0);
 
   al_flip_display();
@@ -101,8 +82,8 @@ string menuRisoluzioni::startMenu(){
       }
       else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
         if(posX >= 220 && posX <= 440 && posY >= 110 && posY <= 190){
-            al_destroy_display(display);
-             return "SD";
+          al_destroy_display(display);
+            return "SD";
            }
 
         else if(posX >= 220 && posX <= 440 && posY >= 200 && posY <= 280){
