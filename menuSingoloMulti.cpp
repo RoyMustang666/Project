@@ -48,24 +48,36 @@ string menuSingoloMulti::sceltaSingoloMulti(string _risoluzione){
 
 
  if(larghezzaScelta==larghezzaSD && altezzaScelta==altezzaSD){
-   button=al_load_bitmap("Images/button_FHD.png");
+   button = al_load_bitmap("Images/TitoloLodeRunner.png");
+   al_draw_bitmap(button,90,10,0);
+
+   button=al_load_bitmap("Images/Singleplayer.png");
    al_draw_bitmap(button,220,110,0);
-   button=al_load_bitmap("Images/button_RHD.png");
+
+   button=al_load_bitmap("Images/Multiplayer.png");
    al_draw_bitmap(button,220,290,0);
 
  }
 
  if(larghezzaScelta==larghezzaR && altezzaScelta==altezzaR){
-   button=al_load_bitmap("Images/button_FHD.png");
+   button = al_load_bitmap("Images/TitoloLodeRunner.png");
+   al_draw_bitmap(button,430,10,0);
+
+   button=al_load_bitmap("Images/Singleplayer.png");
    al_draw_bitmap(button,573,152,0);
-   button=al_load_bitmap("Images/button_FHD.png");
+
+   button=al_load_bitmap("Images/Multiplayer.png");
    al_draw_bitmap(button,573,536,0);
  }
 
  if(larghezzaScelta==larghezzaFH && altezzaScelta==altezzaFH){
-   button=al_load_bitmap("Images/button_FHD.png");
+   button = al_load_bitmap("Images/TitoloLodeRunner.png");
+   al_draw_bitmap(button,725,10,0);
+
+   button=al_load_bitmap("Images/Singleplayer.png");
    al_draw_bitmap(button,860,500,0);
-   button=al_load_bitmap("Images/button_FHD.png");
+
+   button=al_load_bitmap("Images/Multiplayer.png");
    al_draw_bitmap(button,860,650,0);
  }
 

@@ -24,14 +24,15 @@ bool GestoreGioco::inizializzatore(){
 
   menuRisoluzioni *start=new menuRisoluzioni();
   string menu= start->startMenu();
-  cout<<menu<<endl;
+  // cout<<menu<<endl;
 
   menuSingoloMulti *SM=new menuSingoloMulti();
   string singleMulti=SM->sceltaSingoloMulti(menu);
-  cout<<singleMulti<<endl;
+  // cout<<singleMulti<<endl;
 
   Drawer *disegna= new Drawer(menu);
   display=disegna->get_display();
+
   int a=3;
   if(singleMulti=="SinglePlayer")
     disegna->startMap(display, a);
@@ -64,7 +65,7 @@ bool GestoreGioco::inizializzatore(){
 
 }
 
-// FINE INIZIALIZZATOREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+// FINE INIZIALIZZATORE
 
 GestoreGioco::~GestoreGioco(){
 	al_destroy_event_queue(event_queue);
@@ -72,7 +73,6 @@ GestoreGioco::~GestoreGioco(){
   al_destroy_display(display);
   delete  oggetto;
   delete  oggettoCorrente;
-  // al_destroy_bitmap(bitmapR);
 }
 
 

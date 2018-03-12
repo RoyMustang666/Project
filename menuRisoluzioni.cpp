@@ -32,6 +32,13 @@ string menuRisoluzioni::startMenu(){
   //colore sfondo 51 25 0
   //colore tasti 102 51 0
 
+  button = al_load_bitmap("Images/Credits.png");
+  al_draw_bitmap(button,0,400,0);
+
+
+  button = al_load_bitmap("Images/TitoloLodeRunner.png");
+  al_draw_bitmap(button,90,10,0);
+
   button=al_load_bitmap("Images/risoluzioneSD.png");
   al_draw_bitmap(button,220,110,0);
 
