@@ -24,7 +24,7 @@ class menuRisoluzioni{
      ~menuRisoluzioni();
 
      string startMenu();
-
+     
 
 };
 #endif

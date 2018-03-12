@@ -36,9 +36,10 @@ void Drawer::startMap(ALLEGRO_DISPLAY* display, int nn){
   int **matrix;
   campoDG->leggiCampoDiGioco(nn);
   matrix=campoDG->restituisciMappa();
-  Muro muro(widthBitmap, heightBitmap);
-  Nemico giallo(widthBitmap, heightBitmap); //top left
-  Player verde(widthBitmap, widthBitmap); //top right
+  Object *muro= new Muro(widthBitmap, heightBitmap);
+  Object *nemico=new Nemico(widthBitmap, heightBitmap); //top left
+  Object *player=new Player(widthBitmap, widthBitmap); //top right
+
   // Nemico azzurro(widthBitmap, heightBitmap); //bottom right
   // Player rosso(widthBitmap, heightBitmap); //bottom left
 
@@ -72,7 +73,7 @@ void Drawer::startMap(ALLEGRO_DISPLAY* display, int nn){
 
           break;
         case 6:
-          giallo.draw(display, a, b);
+          nemico->draw(a, b);
           // cout<<"riga:"<<i<<" "<<"colonna:"<<j<<endl;
           break;
         case 7:

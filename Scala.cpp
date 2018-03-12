@@ -1,10 +1,24 @@
 #include "Scala.h"
 
-Scala::Scala(int _posX, int _posY):positionX(_posX), positionY(_posY){
-  scala=NULL;
-  scala=al_load_bitmap("Images/Wall.png");
-  if(!scala)
-    cout<<"ERROR"<<endl;
+Scala::Scala(int width, int height):Object(width, height){
+  scala = al_load_bitmap("Images/Wall_001.png");
+  ALLEGRO_BITMAP* scalaScaled= al_create_bitmap(width,height);
+  // CREO UNA BITMAP TEMPORANEA IN CUI SALVO IL VALORE PRECEDENTE
+  ALLEGRO_BITMAP* prevBitmap=al_get_target_bitmap();
+    cout<<"entrato"<<endl;
+  al_set_target_bitmap(scalaScaled);
+  al_draw_scaled_bitmap(scala,
+      0,0,
+      al_get_bitmap_width(scala),
+      al_get_bitmap_height(scala),
+      0,0,
+      width, height,
+      0
+    );
+  al_flip_display();
+  al_set_target_bitmap(prevBitmap);
+  al_destroy_bitmap(scala);
+  scala=scalaScaled;
 }
 
 Scala::~Scala(){
@@ -13,17 +27,17 @@ Scala::~Scala(){
 
 void Scala::draw(int x, int y){
 
-  al_draw_scaled_bitmap(scala, x, y, al_get_bitmap_width(scala), al_get_bitmap_height(scala), 100, 100, 100, 100, 0);
+  al_draw_bitmap(scala,x,y,0);
 
 }
 
-void Scala::setPositionX(int x){
-  positionX=x;
-}
-
-void Scala::setPositionY(int y){
-  positionY=y;
-}
-
-int Scala::getPositionX()const{return positionX;}
-int Scala::getPositionY()const{return positionY;}
+// void Scala::setPositionX(int x){
+//   positionX=x;
+// }
+//
+// void Scala::setPositionY(int y){
+//   positionY=y;
+// }
+//
+// int Scala::getPositionX()const{return positionX;}
+// int Scala::getPositionY()const{return positionY;}

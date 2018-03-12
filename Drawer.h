@@ -4,6 +4,7 @@
 #include <iostream>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
+#include "Object.h"
 #include "Definizioni.h"
 #include "Nemico.h"
 #include "Player.h"

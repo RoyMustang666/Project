@@ -1,9 +1,10 @@
 #include "Nemico.h"
 //enemy costructor
-  Nemico::Nemico(int width, int height):width(width),height(height){
+  Nemico::Nemico(int width, int height):Object(width, height){
     //enemy=NULL;
     enemy = al_load_bitmap("Images/Wall_001.png");
     ALLEGRO_BITMAP* enemyScaled= al_create_bitmap(width,height);
+    // CREO UNA BITMAP TEMPORANEA IN CUI SALVO IL VALORE PRECEDENTE
     ALLEGRO_BITMAP* prevBitmap=al_get_target_bitmap();
       cout<<"entrato"<<endl;
     al_set_target_bitmap(enemyScaled);
@@ -32,7 +33,7 @@
   }
 
 //draw enemy
-  void Nemico::draw(ALLEGRO_DISPLAY* display, int x, int y){
+  void Nemico::draw(int x, int y){
 
     // al_draw_scaled_bitmap(enemy, x, y, al_get_bitmap_width(enemy), al_get_bitmap_height(enemy), 100, 100, 60, 60, 0);
     al_draw_bitmap(enemy, x, y, 0);

@@ -11,16 +11,16 @@ using namespace std;
 class Player: public Object{
   private:
     ALLEGRO_BITMAP* player;
-    int positionX, positionY;
+    // int positionX, positionY;
   public:
-    Player(int _x, int _y);
+    Player(int width, int height);
     ~Player();
 
-    void setPositionX(int x);
-    void setPositionY(int y);
-
-    int getPositionX()const;
-    int getPositionY()const;
+    // void setPositionX(int x);
+    // void setPositionY(int y);
+    //
+    // int getPositionX()const;
+    // int getPositionY()const;
 
     void draw(int x, int y);
 };
