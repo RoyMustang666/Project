@@ -1,0 +1,11 @@
+#include "Nemici.h"
+
+Nemici::Nemici(){
+  Nemico a;
+  for(int i =0;i<3;i++){
+    a.setPositionX(i+3);
+    a
+
+
+  }
+}

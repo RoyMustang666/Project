@@ -1,0 +1,19 @@
+#ifndef NEMICI_H
+#define NEMICI_H
+#include "Nemico.h"
+#include <vector>
+using namespace std;
+class Nemici{
+private:
+  vector <Nemico> nemici;
+
+public:
+  Nemici();
+
+
+
+
+
+
+};
+#endif
