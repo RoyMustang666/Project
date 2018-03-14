@@ -2,7 +2,7 @@
 
 //player costructor
   Player::Player(int width, int height):Object(width, height){
-    player = al_load_bitmap("Images/Wall_001.png");
+    player = al_load_bitmap("Images/Omino.png");
     ALLEGRO_BITMAP* playerScaled= al_create_bitmap(width,height);
     // CREO UNA BITMAP TEMPORANEA IN CUI SALVO IL VALORE PRECEDENTE
     ALLEGRO_BITMAP* prevBitmap=al_get_target_bitmap();

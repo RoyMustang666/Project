@@ -1,7 +1,7 @@
 #include "Muro.h"
 
 Muro::Muro(int width, int height):Object(width,height){
-  muro = al_load_bitmap("Images/Wall.png");
+  muro = al_load_bitmap("Images/Wall_001.png");
   ALLEGRO_BITMAP* muroScaled= al_create_bitmap(width,height);
   // CREO UNA BITMAP TEMPORANEA IN CUI SALVO IL VALORE PRECEDENTE
   ALLEGRO_BITMAP* prevBitmap=al_get_target_bitmap();

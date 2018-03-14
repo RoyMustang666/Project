@@ -25,7 +25,7 @@ Drawer::Drawer(string res){
   // display=al_create_display(widthMap, heightMap);
 }
 
-ALLEGRO_DISPLAY* Drawer::get_display(){
+  ALLEGRO_DISPLAY* Drawer::get_display(){
   ALLEGRO_DISPLAY* display=al_create_display(widthMap, heightMap);
   return display;
 }
@@ -36,9 +36,11 @@ void Drawer::startMap(ALLEGRO_DISPLAY* display, int nn){
   int **matrix;
   campoDG->leggiCampoDiGioco(nn);
   matrix=campoDG->restituisciMappa();
-  Object *muro= new Muro(widthBitmap, heightBitmap);
-  Object *nemico=new Nemico(widthBitmap, heightBitmap); //top left
-  Object *player=new Player(widthBitmap, widthBitmap); //top right
+  Object* muro= new Muro(widthBitmap, heightBitmap);
+  Object* nemico=new Nemico(widthBitmap, heightBitmap); //top left
+  Object* player=new Player(widthBitmap, widthBitmap); //top right
+  Object* scala = new Scala(widthBitmap,heightBitmap);
+
 
   // Nemico azzurro(widthBitmap, heightBitmap); //bottom right
   // Player rosso(widthBitmap, heightBitmap); //bottom left
@@ -51,14 +53,14 @@ void Drawer::startMap(ALLEGRO_DISPLAY* display, int nn){
   // rosso.draw(widthBitmap,heightBitmap);
   for(int i=0; i<18; i++){
     for(int j=0; j<32; j++){
-      int a=j*widthBitmap;
-      int b=i*heightBitmap;
+      int posI=j*widthBitmap;
+      int posJ=i*heightBitmap;
       switch (matrix[i][j]){
         case 0:
 
           break;
-        case 1:
-
+        case 1: // disegna i muri
+          muro->draw(posI,posJ);
           break;
         case 2:
 
@@ -66,21 +68,15 @@ void Drawer::startMap(ALLEGRO_DISPLAY* display, int nn){
         case 3:
 
           break;
-        case 4:
-
+        case 4: // scale
+          scala->draw(posI,posJ);
           break;
-        case 5:
 
+        case 5: // player
+        player->draw(posI,posJ);
           break;
-        case 6:
-          nemico->draw(a, b);
-          // cout<<"riga:"<<i<<" "<<"colonna:"<<j<<endl;
-          break;
-        case 7:
-
-          break;
-        case 8:
-
+        case 6: // nemico
+        nemico->draw(posI,posJ);
           break;
         default:
           break;
@@ -88,6 +84,11 @@ void Drawer::startMap(ALLEGRO_DISPLAY* display, int nn){
 
     }
   }
+  delete muro;
+  delete nemico;
+  delete player;
+  delete scala;
+  delete campoDG;
 }
 
 

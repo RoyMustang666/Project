@@ -2,7 +2,7 @@
 //enemy costructor
   Nemico::Nemico(int width, int height):Object(width, height){
     //enemy=NULL;
-    enemy = al_load_bitmap("Images/Wall_001.png");
+    enemy = al_load_bitmap("Images/Omino_bord.png");
     ALLEGRO_BITMAP* enemyScaled= al_create_bitmap(width,height);
     // CREO UNA BITMAP TEMPORANEA IN CUI SALVO IL VALORE PRECEDENTE
     ALLEGRO_BITMAP* prevBitmap=al_get_target_bitmap();
