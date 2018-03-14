@@ -38,7 +38,7 @@ bool GestoreGioco::inizializzatore(){
     disegna->startMap(display, a);
 
   al_flip_display();
-  al_rest(10);
+  al_rest(5);
 
 
   al_install_keyboard();

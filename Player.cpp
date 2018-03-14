@@ -20,6 +20,17 @@
     al_set_target_bitmap(prevBitmap);
     al_destroy_bitmap(player);
     player=playerScaled;
+
+
+    direzioni[LEFT]=true;
+    direzioni[RIGHT]=true;
+    direzioni[UP]=false;
+    direzioni[DOWN]=false;
+
+
+    this->velocita=6;
+
+
   }
 
 //player destructor
@@ -28,16 +39,53 @@
   }
 
 //draw player
-  void Player::draw(int x, int y){
+  void Player::draw(int x, int y, int _riga, int _colonna){
     al_draw_bitmap(player,x,y,0);
+    riga=_riga;
+    colonna=_colonna;
   }
 
-  // void Player::setPositionX(int x){
-  //     positionX=x;
-  // }
-  // void Player::setPositionY(int y){
-  //     positionY=y;
-  // }
-  //
-  // int Player::getPositionX()const{return positionX;}
-  // int Player::getPositionY()const{return positionY;}
+  void Player::setRiga(int _riga){
+    riga=_riga;
+  }
+  void Player::setColonna(int _colonna){
+    colonna=_colonna;
+  }
+
+  void Player::onKeyLeft(CampoDiGioco *field){
+    if(direzioni[LEFT]){
+     direzioni[RIGHT] = direzioni[UP] = direzioni[DOWN] = false;
+     if(field.getElementoMappa(riga, colonna-1)== 0 || field.getElementoMappa(riga, colonna-1)==4){
+       field.setElementoMatrice(riga, colonna-1, 5);
+       field.setElementoMatrice(riga, colonna, 0);
+     }
+   }
+  }
+
+  void Player::onKeyRight(CampoDiGioco *field){
+    if(direzioni[RIGHT]){
+     direzioni[LEFT] = direzioni[UP] = direzioni[DOWN] = false;
+     if(field.getElementoMappa(riga, colonna+1)== 0 || field.getElementoMappa(riga, colonna+1)==4){
+       field.setElementoMatrice(riga, colonna+1, 5);
+       field.setElementoMatrice(riga, colonna, 0);
+     }
+   }
+  }
+
+  void Player::onKeyUp(CampoDiGioco *field){
+    if(direzioni[UP]){
+     direzioni[RIGHT] = direzioni[LEFT] = direzioni[DOWN] = false;
+
+    }
+  }
+
+  void Player::onKeyDown(CampoDiGioco *field){
+    if(direzioni[DOWN]){
+     direzioni[RIGHT] = direzioni[UP] = direzioni[LEFT] = false;
+
+    }
+  }
+
+  void Player::onKeyReleased(){
+     direzioni[RIGHT] = direzioni[UP] = direzioni[DOWN] = direzioni[LEFT] = false;
+  }
