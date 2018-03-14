@@ -24,15 +24,14 @@ bool GestoreGioco::inizializzatore(){
 
   menuRisoluzioni *start=new menuRisoluzioni();
   string menu= start->startMenu();
-  // cout<<menu<<endl;
+  cout<<menu<<endl;
 
   menuSingoloMulti *SM=new menuSingoloMulti();
   string singleMulti=SM->sceltaSingoloMulti(menu);
-  // cout<<singleMulti<<endl;
+  cout<<singleMulti<<endl;
 
   Drawer *disegna= new Drawer(menu);
   display=disegna->get_display();
-
   int a=3;
   if(singleMulti=="SinglePlayer")
     disegna->startMap(display, a);
@@ -65,62 +64,119 @@ bool GestoreGioco::inizializzatore(){
 
 }
 
-// FINE INIZIALIZZATORE
+// FINE INIZIALIZZATOREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
 GestoreGioco::~GestoreGioco(){
 	al_destroy_event_queue(event_queue);
   al_destroy_timer(timer);
   al_destroy_display(display);
-  // delete  oggetto;
-  // delete  oggettoCorrente;
+  delete  oggetto;
+  delete  oggettoCorrente;
+  // al_destroy_bitmap(bitmapR);
 }
 
 
 
 
 
-// void GestoreGioco::loop(){
-//  do{
-//
-//   for (int i = 0; i < 6; i++)
-//     tasti[i] = false;
-//
-//   al_start_timer(timer);
-//
-//   while(1){
-//     ALLEGRO_EVENT event;
-//     al_wait_for_event(event_queue,&event);
-//
-//    if (event.type == ALLEGRO_EVENT_TIMER)
-//     {
-//       if(tasti[LEFT])
-//         oggettoCorrente->moveLeft();
-//       if (tasti[RIGHT])
-//         oggettoCorrente->moveRight();
-//       if (tasti[UP])
-//         oggettoCorrente->moveUp();
-//       if (tasti[DOWN])
-//         oggettoCorrente->moveDown();
-//       if (tasti[ESCAPE])
-//         oggettoCorrente->pressExit();
-//       if (tasti[SPACE])
-//         oggettoCorrente->pressSpace();
-//
-//       //oggettoCorrente->update();aggiorna il movimento
-//
-//       draw = true;
-//     }
-//         if (draw){
-//           oggettoCorrente->render();
-//           al_flip_display();
-//          }
-//       //oggettoCorrente->rilasciaTasto();//funzione in  player
-//
-//
-//
-//
-//
-//
-//     }//while secondo
-//   }while(!gameDone);
-// }
+void GestoreGioco::loop(){
+ do{
+
+  for (int i = 0; i < 6; i++)
+    tasti[i] = false;
+
+  al_start_timer(timer);
+
+  while(1){
+    ALLEGRO_EVENT event;
+    al_wait_for_event(event_queue,&event);
+
+   if (event.type == ALLEGRO_EVENT_TIMER)
+    {
+      if(tasti[LEFT])
+        oggetto->moveLeft(CampoDiGioco *field);
+      if (tasti[RIGHT])
+        oggetto->moveRight(CampoDiGioco *field);
+      if (tasti[UP])
+        oggetto->moveUp(CampoDiGioco *field);
+      if (tasti[DOWN])
+        oggetto->moveDown(CampoDiGioco *field);
+      if (tasti[ESCAPE])
+        oggetto->pressExit();
+      if (tasti[SPACE])
+        oggetto->pressSpace();
+
+
+
+      draw = true;
+      }
+      else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+          break;
+        }
+
+      else if (event.type == ALLEGRO_EVENT_KEY_DOWN)
+  			{
+  				switch (event.keyboard.keycode)
+  				{
+  				case ALLEGRO_KEY_UP:
+  				  tasti[UP] = true;
+  					break;
+  				case ALLEGRO_KEY_DOWN:
+  					tasti[DOWN] = true;
+  					break;
+  				case ALLEGRO_KEY_RIGHT:
+  					tasti[RIGHT] = true;
+  					break;
+  				case ALLEGRO_KEY_LEFT:
+  					tasti[LEFT] = true;
+  					break;
+  				case ALLEGRO_KEY_SPACE:
+  					tasti[SPACE] = true;
+  					break;
+  				case ALLEGRO_KEY_ESCAPE:
+  					tasti[ESCAPE] = true;
+  					break;
+  				}
+  			}
+        else if (event.type == ALLEGRO_EVENT_KEY_UP)
+        {
+          switch (event.keyboard.keycode)
+          {
+          case ALLEGRO_KEY_UP:
+            tasti[UP] = false;
+            break;
+          case ALLEGRO_KEY_DOWN:
+            tasti[DOWN] = false;
+            break;
+          case ALLEGRO_KEY_RIGHT:
+            tasti[RIGHT] = false;
+            break;
+          case ALLEGRO_KEY_LEFT:
+            tasti[LEFT] = false;
+            break;
+          case ALLEGRO_KEY_SPACE:
+            tasti[SPACE] = false;
+            break;
+          case ALLEGRO_KEY_ESCAPE:
+            tasti[ESCAPE] = false;
+            break;
+
+          }
+          oggetto->onKeyReleased();
+
+        }
+
+            if (draw){
+               drawer->getdisplay();
+               al_flip_display();
+            }
+      //oggettoCorrente->rilasciaTasto();//funzione in  player
+
+
+
+
+
+
+   }//while secondo
+  }while(!gameDone);
+}
