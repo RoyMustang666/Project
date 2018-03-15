@@ -1,6 +1,6 @@
 #include "Scala.h"
 
-Scala::Scala(int width, int height):Object(width, height){
+Scala::Scala(int width, int height):ObjectStatic(width, height){
   scala = al_load_bitmap("Images/Omino_up.png");
   ALLEGRO_BITMAP* scalaScaled= al_create_bitmap(width,height);
   // CREO UNA BITMAP TEMPORANEA IN CUI SALVO IL VALORE PRECEDENTE

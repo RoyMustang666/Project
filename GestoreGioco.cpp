@@ -1,7 +1,8 @@
+
 #include"GestoreGioco.h"
 
 
-GestoreGioco::GestoreGioco() :display(0),event_queue(0),timer(0),oggetto(0),oggettoCorrente(0){}
+GestoreGioco::GestoreGioco() :display(0),event_queue(0),timer(0),player(0),field(NULL),draw(true){}
 
 bool GestoreGioco::inizializzatore(){
 
@@ -22,22 +23,36 @@ bool GestoreGioco::inizializzatore(){
 
   al_set_new_display_flags(ALLEGRO_NOFRAME);
 
-  menuRisoluzioni *start=new menuRisoluzioni();
-  string menu= start->startMenu();
-  cout<<menu<<endl;
+  // verifico quale è stata la risoluzioneScelta dall'utente
+  menuRisoluzioni* menuRis = new menuRisoluzioni();
+  string risoluzioneScelta = menuRis->startMenu();
+  // cout<<menu<<endl;
 
-  menuSingoloMulti *SM=new menuSingoloMulti();
-  string singleMulti=SM->sceltaSingoloMulti(menu);
-  cout<<singleMulti<<endl;
+  menuSingoloMulti *singoloMulti = new menuSingoloMulti();
+  string sceltaSingMulti=singoloMulti->sceltaSingoloMulti(risoluzioneScelta);
+  // cout<<singleMulti<<endl;
 
-  Drawer *disegna= new Drawer(menu);
-  display=disegna->get_display();
-  int a=3;
-  if(singleMulti=="SinglePlayer")
-    disegna->startMap(display, a);
+
+// creo un drawer dove disegnerò in base alla risoluzioneScelta
+  drawer= new Drawer(risoluzioneScelta);
+  display = drawer->get_display();
+
+
+
+  // creo un campo di gioco dove in base alla risoluzioneScelta
+  //il leggiCampoDiGioco si preoccuperà di caricare la mappa della dim corretta
+
+  field =  new CampoDiGioco();
+  field->leggiCampoDiGioco(sceltaSingMulti);
+
+  drawer->startMap(display, field);
+
+
+  player = new Player(drawer->getWidth(),drawer->getHeight());
+
 
   al_flip_display();
-  al_rest(5);
+  // al_rest(5);
 
 
   al_install_keyboard();
@@ -70,13 +85,11 @@ GestoreGioco::~GestoreGioco(){
 	al_destroy_event_queue(event_queue);
   al_destroy_timer(timer);
   al_destroy_display(display);
-  delete  oggetto;
-  delete  oggettoCorrente;
+  delete  player;
+  delete field;
+  // delete  playerCorrente;
   // al_destroy_bitmap(bitmapR);
 }
-
-
-
 
 
 void GestoreGioco::loop(){
@@ -91,28 +104,28 @@ void GestoreGioco::loop(){
     ALLEGRO_EVENT event;
     al_wait_for_event(event_queue,&event);
 
-   if (event.type == ALLEGRO_EVENT_TIMER)
-    {
-      if(tasti[LEFT])
-        oggetto->moveLeft(CampoDiGioco *field);
-      if (tasti[RIGHT])
-        oggetto->moveRight(CampoDiGioco *field);
-      if (tasti[UP])
-        oggetto->moveUp(CampoDiGioco *field);
-      if (tasti[DOWN])
-        oggetto->moveDown(CampoDiGioco *field);
-      if (tasti[ESCAPE])
-        oggetto->pressExit();
-      if (tasti[SPACE])
-        oggetto->pressSpace();
-
-
+       if (event.type == ALLEGRO_EVENT_TIMER)
+        {
+          if(tasti[LEFT])
+            player->onKeyLeft(field);
+          if (tasti[RIGHT])
+            player->onKeyRight(field);
+          if (tasti[UP])
+            player->onKeyUp(field);
+          if (tasti[DOWN])
+            player->onKeyDown(field);
+          if (tasti[ESCAPE])
+              return;
+          // if (tasti[SPACE])
+          //   // player->onSpaceBreak(field);
+        }
 
       draw = true;
-      }
-      else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+
+      if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
           break;
-        }
+
+
 
       else if (event.type == ALLEGRO_EVENT_KEY_DOWN)
   			{
@@ -160,20 +173,18 @@ void GestoreGioco::loop(){
           case ALLEGRO_KEY_ESCAPE:
             tasti[ESCAPE] = false;
             break;
-
           }
-          oggetto->onKeyReleased();
-
+          player->onKeyReleased();
         }
 
-            if (draw){
-               drawer->getdisplay();
-               al_flip_display();
-            }
-      //oggettoCorrente->rilasciaTasto();//funzione in  player
 
 
+        if(draw){
 
+          al_clear_to_color(al_map_rgb(0,0,0));
+          drawer->startMap(display,field);
+          al_flip_display();
+        }
 
 
 

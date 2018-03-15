@@ -1,6 +1,6 @@
 #include "Nemico.h"
 //enemy costructor
-  Nemico::Nemico(int width, int height):Object(width, height){
+  Nemico::Nemico(int width, int height):ObjectDynamic(width, height){
     //enemy=NULL;
     enemy = al_load_bitmap("Images/Omino_bord.png");
     ALLEGRO_BITMAP* enemyScaled= al_create_bitmap(width,height);
@@ -33,19 +33,14 @@
   }
 
 //draw enemy
-  void Nemico::draw(int x, int y){
+  void Nemico::draw(int x, int y,int _riga, int _colonna){
 
-    // al_draw_scaled_bitmap(enemy, x, y, al_get_bitmap_width(enemy), al_get_bitmap_height(enemy), 100, 100, 60, 60, 0);
     al_draw_bitmap(enemy, x, y, 0);
+    riga = _riga;
+    colonna = _colonna;
+    // al_draw_scaled_bitmap(enemy, x, y, al_get_bitmap_width(enemy), al_get_bitmap_height(enemy), 100, 100, 60, 60, 0);
   }
 
-  // void Nemico::setPositionX(int x){
-  //    positionX=x;
+  // bool Nemico::checkCollision()const{
+  //
   // }
-
-  // void Nemico::setPositionY(int y){
-  //    positionY=y;
-  // }
-
-  // int Nemico::getPositionX()const{return positionX;}
-  // int Nemico::getPositionY()const{return positionY;}

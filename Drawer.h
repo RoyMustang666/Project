@@ -4,7 +4,8 @@
 #include <iostream>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
-#include "Object.h"
+#include "ObjectDynamic.h"
+#include "ObjectStatic.h"
 #include "Definizioni.h"
 #include "Nemico.h"
 #include "Player.h"
@@ -16,7 +17,6 @@ using namespace std;
 
 class Drawer{
   private:
-    string res;
     int widthMap;
     int heightMap;
     int widthBitmap;
@@ -24,9 +24,11 @@ class Drawer{
     // ALLEGRO_DISPLAY* display;
 
   public:
-    Drawer(string res); //input: screen resolution
+    Drawer(string risoluzioneScelta); // risoluzioneScelta dall'utente nel menu delle risoluzioni
     ~Drawer();
-    void startMap(ALLEGRO_DISPLAY* display,int nn);
+    int getWidth()const;
+    int getHeight()const;
+    void startMap(ALLEGRO_DISPLAY* display,CampoDiGioco* campoDiGioco);
     ALLEGRO_DISPLAY* get_display();
 
 

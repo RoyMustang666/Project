@@ -4,11 +4,12 @@ CampoDiGioco::CampoDiGioco(){
   Mappa = new int* [righeMat];
   for(int i=0;i<righeMat;i++)
     Mappa[i] = new int [colonneMat];
+
 }
 
 // SERVE PER LEGGERE I VARI LIVELLI DA FILE
-void CampoDiGioco::leggiCampoDiGioco(int numNemici){
-  if(numNemici==3){
+void CampoDiGioco::leggiCampoDiGioco(string sceltaSingMulti){
+  if(sceltaSingMulti=="SinglePlayer"){
   ifstream apriFile("livello1.txt");
     while(!apriFile.eof()){
       for(int riga=0;riga<righeMat;riga++){
@@ -21,7 +22,7 @@ void CampoDiGioco::leggiCampoDiGioco(int numNemici){
   }
   // MANCA LA PARTE DELL'ELSE DOVE I NEMICI SONO DETTATI DALLA SCELTA DELL'UTENTE
 
-  // if(numNemici<3){
+  // if(sceltaSingMulti=="MultiPLayer"){
   // ifstream apriFile("livello1mp.txt");
   //   while(!apriFile.eof()){
   //     for(int riga=0;riga<righeMat;riga++){

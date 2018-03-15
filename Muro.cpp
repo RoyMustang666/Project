@@ -1,6 +1,6 @@
 #include "Muro.h"
 
-Muro::Muro(int width, int height):Object(width,height){
+Muro::Muro(int width, int height):ObjectStatic(width,height){
   muro = al_load_bitmap("Images/Wall_001.png");
   ALLEGRO_BITMAP* muroScaled= al_create_bitmap(width,height);
   // CREO UNA BITMAP TEMPORANEA IN CUI SALVO IL VALORE PRECEDENTE
@@ -18,7 +18,7 @@ Muro::Muro(int width, int height):Object(width,height){
   al_flip_display();
   al_set_target_bitmap(prevBitmap);
   al_destroy_bitmap(muro);
-  muro=muroScaled;
+  muro = muroScaled;
 
 }
 
@@ -27,7 +27,6 @@ Muro::~Muro(){
 }
 
 void Muro::draw(int x, int y){
-
   al_draw_bitmap(muro,x,y,0);
 
 }

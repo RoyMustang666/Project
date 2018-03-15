@@ -10,17 +10,20 @@ class CampoDiGioco{
 
 private:
   int** Mappa;
+
   // int Mappa[18][32];
 
 public:
   CampoDiGioco();
   ~CampoDiGioco();
-  void leggiCampoDiGioco(int numNemici);
+  void leggiCampoDiGioco(string sceltaSingMulti);
   void stampaCampoDiGioco()const;
   int** restituisciMappa()/*const*/; // forse posso farlo const
   // CampoDiGioco& operator [](int i,int j); // non funziona
+
   int getElementoMappa(int i,int j)const;
   void setElementoMatrice(int i, int j,int numero);
+  void swap(int i, int j);
 
 
 

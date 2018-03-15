@@ -3,10 +3,10 @@
 #include<iostream>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
-#include "Object.h"
+#include "ObjectStatic.h"
 
 using namespace std;
-class Muro: public Object{
+class Muro: public ObjectStatic{
   // SIA IN NEMICO CHE IN MURO CHE IN SCALA FORSE VA DISTRUTTO QUELLO CREATO FORSE ...
    private:
       ALLEGRO_BITMAP *muro;
@@ -14,11 +14,6 @@ class Muro: public Object{
       Muro(int width, int height);
       ~Muro();
 
-      // void setPositionX(int x);
-      // void setPositionY(int y);
-      //
-      // int getPositionX()const;
-      // int getPositionY()const;
 
       void draw(int x, int y);
 };

@@ -1,19 +1,20 @@
 #include "Drawer.h"
 
+// questa string sarà data dal passaggio nel gestore gioco dopo la scelta
+// delle risoluzioni
+Drawer::Drawer(string risoluzioneScelta){
 
-Drawer::Drawer(string res){
-  this->res=res;
-  if(res=="SD"){
+  if(risoluzioneScelta=="SD"){
     //case "SD":
       widthMap=larghezzaSD;
       heightMap=altezzaSD;
     }
-  else if(res=="HD"){
+  else if(risoluzioneScelta=="HD"){
     //case "HD":
     widthMap=larghezzaR;
     heightMap=altezzaR;
   }
-  else if(res=="FH"){
+  else if(risoluzioneScelta=="FH"){
     //case "FH":
       widthMap=larghezzaFH;
       heightMap=altezzaFH;
@@ -25,37 +26,37 @@ Drawer::Drawer(string res){
   // display=al_create_display(widthMap, heightMap);
 }
 
-  ALLEGRO_DISPLAY* Drawer::get_display(){
-  ALLEGRO_DISPLAY* display=al_create_display(widthMap, heightMap);
-  return display;
+int Drawer::getWidth()const{
+  return widthBitmap;
+}
+int Drawer::getHeight()const{
+  return heightBitmap;
 }
 
 
-void Drawer::startMap(ALLEGRO_DISPLAY* display, int nn){
-  CampoDiGioco *campoDG= new CampoDiGioco();
-  int **matrix;
-  campoDG->leggiCampoDiGioco(nn);
-  matrix=campoDG->restituisciMappa();
-  Object* muro= new Muro(widthBitmap, heightBitmap);
-  Object* nemico=new Nemico(widthBitmap, heightBitmap); //top left
-  Object* player=new Player(widthBitmap, widthBitmap); //top right
-  Object* scala = new Scala(widthBitmap,heightBitmap);
+// servirà in base alla risoluzioneScelta di quanto fare grande il display sempre in gestore gioco
+  ALLEGRO_DISPLAY* Drawer::get_display(){
+    ALLEGRO_DISPLAY* display=al_create_display(widthMap, heightMap);
+  return display;
+}
 
+// servirà prima fare un al_clear_to_color();
+// e dopo richiamare questa funzione qui su un Drawer
+// ovviamente tutto questo nel loop di GestoreGioco
+void Drawer::startMap(ALLEGRO_DISPLAY* display,CampoDiGioco* campoDiGioco){
+  ObjectStatic* muro = new Muro(widthBitmap,heightBitmap);
+  ObjectStatic* scala =  new Scala(widthBitmap,heightBitmap);
+  ObjectDynamic* player =  new Player(widthBitmap,heightBitmap);
+  ObjectDynamic* nemico =  new Nemico(widthBitmap,heightBitmap);
 
-  // Nemico azzurro(widthBitmap, heightBitmap); //bottom right
-  // Player rosso(widthBitmap, heightBitmap); //bottom left
-
-  // ALLEGRO_DISPLAY* display=al_create_display(widthMap, heightMap);
-
-  // giallo.draw(widthBitmap,heightBitmap);
-  // verde.draw(widthBitmap,heightBitmap);
-  // azzurro.draw(widthBitmap,heightBitmap);
-  // rosso.draw(widthBitmap,heightBitmap);
   for(int i=0; i<18; i++){
     for(int j=0; j<32; j++){
+      // la i e la j modificano la colonna e la riga di dove si trova il pg
+      // posI posJ è il punto per disegnare l'immagine in base alla dimensione
       int posI=j*widthBitmap;
       int posJ=i*heightBitmap;
-      switch (matrix[i][j]){
+      // evito di andare a creare una matrice di app
+      switch (campoDiGioco->getElementoMappa(i,j)){
         case 0:
 
           break;
@@ -73,11 +74,12 @@ void Drawer::startMap(ALLEGRO_DISPLAY* display, int nn){
           break;
 
         case 5: // player
-        player->draw(posI,posJ);
+        player->draw(posI,posJ,i,j);
           break;
         case 6: // nemico
-        nemico->draw(posI,posJ);
+        nemico->draw(posI,posJ,i,j);
           break;
+
         default:
           break;
       }
@@ -85,10 +87,9 @@ void Drawer::startMap(ALLEGRO_DISPLAY* display, int nn){
     }
   }
   delete muro;
-  delete nemico;
-  delete player;
   delete scala;
-  delete campoDG;
+  delete player;
+  delete nemico;
 }
 
 
